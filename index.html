@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Template file</title>
+</head>
+<body>
+ <div class="container">
+   <div class="container__content">
+     <h1 class="container__title">Convert expression to <br><span>camelCase</span> format</h1>
+    <p class="container__description-text">
+      Camel case is the practice of writing phrases without spaces or punctuation, indicating the separation of words with a single capitalized letter, and the first word starting with either case. Common examples include "iPhone" and "eBay"
+    </p>
+     <input type="text" class="user-input">
+     <button class="user-input__button">Convert to camelCase</button>
+     <hr>
+     <div class="result">
+      <p class="result__text">Resault:<br> <span></span></p>
+      <div class="memory">
+        <h3>History:</h3>
+        <div class="memory-list"></div>
+      </div>
+     </div>
+    
+
+   </div>
+ </div>
+
+ <script>
+   const userInput = document.querySelector('input')
+   const result = document.querySelector('.result__text span')
+   let arr = []
+   let arr1 = []
+
+
+  const convertResult = function() {
+    if(!userInput.value.includes('ä')){
+      let stringArr = userInput.value.split(' ')
+      arr = [stringArr[0].slice(0,1).toLowerCase() + stringArr[0].slice(1)]
+      // loop
+      for(let i = 1; i < stringArr.length; i++){ 
+        arr += stringArr[i].slice(0,1).toUpperCase() + stringArr[i].slice(1).toLowerCase()  
+      }
+      result.textContent = arr
+      userInput.value = ''    
+    
+    if(result.textContent !== ''){
+      arr1.push(result.textContent)
+      document.querySelector('.memory-list').innerHTML += (`${result.textContent}, `);
+    }
+   }
+  }
+
+
+    // Button vajutades:
+  document.querySelector('button').addEventListener('click', convertResult)
+  // Enterile vajutades: 
+  document.addEventListener('keydown', function (event){
+     if (event.key === 'Enter')
+     convertResult()
+  //  })
+   })
+
+ </script>
+</body>
+</html>
